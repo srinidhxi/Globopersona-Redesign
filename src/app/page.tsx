@@ -313,7 +313,7 @@ export default function Home() {
         Revenue Generated
       </p>
 
-      <h2 className="text-[52px] leading-none font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
+      <h2 className="text-3xl xl:text-5xl leading-none font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
         $24,847
       </h2>
 
