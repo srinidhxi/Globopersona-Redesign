@@ -219,7 +219,7 @@ export default function Home() {
 
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 xl:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
           <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-6 rounded-3xl text-white shadow-lg">
 
@@ -313,7 +313,7 @@ export default function Home() {
         Revenue Generated
       </p>
 
-      <h2 className="text-3xl xl:text-5xl leading-none font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
+      <h2 className="text-3xl 2xl:text-5xl xl:text-4xl leading-none font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
         $24,847
       </h2>
 
