@@ -219,7 +219,7 @@ export default function Home() {
 
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 xl:grid-cols-2 gap-6">
 
           <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-6 rounded-3xl text-white shadow-lg">
 
@@ -303,27 +303,27 @@ export default function Home() {
 
           </div>
 
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm col-span-1 xl:col-span-1 min-w-0">
 
-  <div className="flex items-center justify-between gap-4">
+  <div className="flex items-center justify-between gap-6">
 
-    <div className="flex-1 min-w-0">
+    <div className="flex flex-col min-w-0">
 
-      <p className="text-zinc-500 dark:text-zinc-400 text-sm">
+      <p className="text-zinc-500 dark:text-zinc-400 text-sm whitespace-nowrap">
         Revenue Generated
       </p>
 
-      <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
+      <h2 className="text-[52px] leading-none font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
         $24,847
       </h2>
 
     </div>
 
-    <div className="w-20 h-20 flex items-center justify-center rounded-3xl bg-yellow-100 shrink-0">
+    <div className="w-[88px] h-[88px] rounded-3xl bg-yellow-100 flex items-center justify-center shrink-0">
 
       <DollarSign
         className="text-yellow-600"
-        size={38}
+        size={42}
       />
 
     </div>
