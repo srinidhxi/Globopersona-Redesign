@@ -255,7 +255,7 @@ export default function Home() {
                   Open Rate
                 </p>
 
-                <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white">
+                <h2 className="text-3xl 2xl:text-4xl font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
                   28.4%
                 </h2>
 
@@ -303,27 +303,27 @@ export default function Home() {
 
           </div>
 
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm col-span-1 xl:col-span-1 min-w-0">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
 
-  <div className="flex items-center justify-between gap-6">
+  <div className="flex items-center justify-between h-full">
 
-    <div className="flex flex-col min-w-0">
+    <div>
 
-      <p className="text-zinc-500 dark:text-zinc-400 text-sm whitespace-nowrap">
+      <p className="text-zinc-500 dark:text-zinc-400 text-sm">
         Revenue Generated
       </p>
 
-      <h2 className="text-3xl 2xl:text-5xl xl:text-4xl leading-none font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
+      <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white">
         $24,847
       </h2>
 
     </div>
 
-    <div className="w-[88px] h-[88px] rounded-3xl bg-yellow-100 flex items-center justify-center shrink-0">
+    <div className="bg-yellow-100 p-4 rounded-2xl flex items-center justify-center">
 
       <DollarSign
         className="text-yellow-600"
-        size={42}
+        size={28}
       />
 
     </div>
