@@ -305,32 +305,32 @@ export default function Home() {
 
           <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
 
-            <div className="flex items-center justify-between gap-4">
+  <div className="flex items-center justify-between gap-4">
 
-              <div>
+    <div className="flex-1 min-w-0">
 
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
-                  Revenue Generated
-                </p>
+      <p className="text-zinc-500 dark:text-zinc-400 text-sm">
+        Revenue Generated
+      </p>
 
-                <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white">
-                  $24,847
-                </h2>
+      <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white whitespace-nowrap">
+        $24,847
+      </h2>
 
-              </div>
+    </div>
 
-              <div className="bg-yellow-100 p-4 rounded-2xl">
+    <div className="w-20 h-20 flex items-center justify-center rounded-3xl bg-yellow-100 shrink-0">
 
-                <DollarSign
-                  className="text-yellow-600"
-                  size={28}
-                />
+      <DollarSign
+        className="text-yellow-600"
+        size={38}
+      />
 
-              </div>
+    </div>
 
-            </div>
+  </div>
 
-          </div>
+</div>
 
         </div>
 
