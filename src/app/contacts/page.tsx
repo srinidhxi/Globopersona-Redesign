@@ -6,12 +6,16 @@ import {
   Search,
   Users,
   Plus,
+  Pencil,
+  Trash2,
+  Check,
 } from "lucide-react"
 
 import Sidebar from "@/components/ui/layout/sidebar"
 
-const contacts = [
+const initialContacts = [
   {
+    id: 1,
     name: "Sarah Johnson",
     email: "sarah@company.com",
     company: "Growth Labs",
@@ -19,6 +23,7 @@ const contacts = [
     initial: "S",
   },
   {
+    id: 2,
     name: "Michael Chen",
     email: "michael@startup.io",
     company: "Nova AI",
@@ -26,60 +31,12 @@ const contacts = [
     initial: "M",
   },
   {
+    id: 3,
     name: "Emma Wilson",
     email: "emma@agency.com",
     company: "Creative Flow",
     status: "Inactive",
     initial: "E",
-  },
-  {
-    name: "James Carter",
-    email: "james@techworld.com",
-    company: "TechWorld",
-    status: "Active",
-    initial: "J",
-  },
-  {
-    name: "Olivia Martinez",
-    email: "olivia@brightmedia.com",
-    company: "Bright Media",
-    status: "Lead",
-    initial: "O",
-  },
-  {
-    name: "Daniel Kim",
-    email: "daniel@futurelabs.ai",
-    company: "Future Labs",
-    status: "Active",
-    initial: "D",
-  },
-  {
-    name: "Sophia Brown",
-    email: "sophia@marketflow.io",
-    company: "MarketFlow",
-    status: "Inactive",
-    initial: "S",
-  },
-  {
-    name: "Ethan Walker",
-    email: "ethan@nextwave.tech",
-    company: "NextWave",
-    status: "Active",
-    initial: "E",
-  },
-  {
-    name: "Ava Thompson",
-    email: "ava@visionaryhub.com",
-    company: "Visionary Hub",
-    status: "Lead",
-    initial: "A",
-  },
-  {
-    name: "Noah Anderson",
-    email: "noah@elevategrowth.io",
-    company: "Elevate Growth",
-    status: "Active",
-    initial: "N",
   },
 ]
 
@@ -87,7 +44,16 @@ export default function ContactsPage() {
 
   const [showModal, setShowModal] = useState(false)
 
-  const [contactsData, setContactsData] = useState(contacts)
+  const [contactsData, setContactsData] = useState(initialContacts)
+
+  const [editingId, setEditingId] = useState<number | null>(null)
+
+  const [editedContact, setEditedContact] = useState({
+    name: "",
+    email: "",
+    company: "",
+    status: "",
+  })
 
   const [newContact, setNewContact] = useState({
     name: "",
@@ -95,6 +61,82 @@ export default function ContactsPage() {
     company: "",
     status: "Active",
   })
+
+  const handleAddContact = () => {
+
+    if (
+      !newContact.name.trim() ||
+      !newContact.email.trim() ||
+      !newContact.company.trim()
+    ) {
+      alert("Please fill all fields")
+      return
+    }
+
+    const contactToAdd = {
+      id: Date.now(),
+      ...newContact,
+      initial: newContact.name.charAt(0).toUpperCase(),
+    }
+
+    setContactsData([
+      ...contactsData,
+      contactToAdd,
+    ])
+
+    setNewContact({
+      name: "",
+      email: "",
+      company: "",
+      status: "Active",
+    })
+
+    setShowModal(false)
+  }
+
+  const handleDelete = (id: number) => {
+    setContactsData(
+      contactsData.filter(contact => contact.id !== id)
+    )
+  }
+
+  const handleEdit = (contact: any) => {
+
+    setEditingId(contact.id)
+
+    setEditedContact({
+      name: contact.name,
+      email: contact.email,
+      company: contact.company,
+      status: contact.status,
+    })
+  }
+
+  const handleSaveEdit = (id: number) => {
+
+    if (
+      !editedContact.name.trim() ||
+      !editedContact.email.trim() ||
+      !editedContact.company.trim()
+    ) {
+      alert("Please fill all fields")
+      return
+    }
+
+    setContactsData(
+      contactsData.map(contact =>
+        contact.id === id
+          ? {
+              ...contact,
+              ...editedContact,
+              initial: editedContact.name.charAt(0).toUpperCase(),
+            }
+          : contact
+      )
+    )
+
+    setEditingId(null)
+  }
 
   return (
 
@@ -131,7 +173,7 @@ export default function ContactsPage() {
 
         </div>
 
-        <div className="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden transition-all duration-300">
+        <div className="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
 
           <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
@@ -185,6 +227,10 @@ export default function ContactsPage() {
                     Status
                   </th>
 
+                  <th className="px-6 py-4 font-medium">
+                    Actions
+                  </th>
+
                 </tr>
 
               </thead>
@@ -194,7 +240,7 @@ export default function ContactsPage() {
                 {contactsData.map((contact) => (
 
                   <tr
-                    key={contact.email}
+                    key={contact.id}
                     className="border-t border-zinc-100 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition-all"
                   >
 
@@ -208,9 +254,26 @@ export default function ContactsPage() {
 
                         <div>
 
-                          <h3 className="font-semibold text-zinc-900 dark:text-white">
-                            {contact.name}
-                          </h3>
+                          {editingId === contact.id ? (
+
+                            <input
+                              value={editedContact.name}
+                              onChange={(e) =>
+                                setEditedContact({
+                                  ...editedContact,
+                                  name: e.target.value,
+                                })
+                              }
+                              className="bg-zinc-100 dark:bg-zinc-950 px-3 py-2 rounded-xl outline-none text-zinc-900 dark:text-white"
+                            />
+
+                          ) : (
+
+                            <h3 className="font-semibold text-zinc-900 dark:text-white">
+                              {contact.name}
+                            </h3>
+
+                          )}
 
                           <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
                             Subscriber
@@ -223,11 +286,45 @@ export default function ContactsPage() {
                     </td>
 
                     <td className="px-6 py-5 text-zinc-700 dark:text-zinc-300">
-                      {contact.email}
+
+                      {editingId === contact.id ? (
+
+                        <input
+                          value={editedContact.email}
+                          onChange={(e) =>
+                            setEditedContact({
+                              ...editedContact,
+                              email: e.target.value,
+                            })
+                          }
+                          className="bg-zinc-100 dark:bg-zinc-950 px-3 py-2 rounded-xl outline-none"
+                        />
+
+                      ) : (
+                        contact.email
+                      )}
+
                     </td>
 
                     <td className="px-6 py-5 text-zinc-700 dark:text-zinc-300">
-                      {contact.company}
+
+                      {editingId === contact.id ? (
+
+                        <input
+                          value={editedContact.company}
+                          onChange={(e) =>
+                            setEditedContact({
+                              ...editedContact,
+                              company: e.target.value,
+                            })
+                          }
+                          className="bg-zinc-100 dark:bg-zinc-950 px-3 py-2 rounded-xl outline-none"
+                        />
+
+                      ) : (
+                        contact.company
+                      )}
+
                     </td>
 
                     <td className="px-6 py-5">
@@ -237,6 +334,41 @@ export default function ContactsPage() {
                         {contact.status}
 
                       </span>
+
+                    </td>
+
+                    <td className="px-6 py-5">
+
+                      <div className="flex items-center gap-3">
+
+                        {editingId === contact.id ? (
+
+                          <button
+                            onClick={() => handleSaveEdit(contact.id)}
+                            className="p-2 rounded-xl bg-green-500/10 text-green-500 hover:bg-green-500/20 transition-all"
+                          >
+                            <Check size={18} />
+                          </button>
+
+                        ) : (
+
+                          <button
+                            onClick={() => handleEdit(contact)}
+                            className="p-2 rounded-xl bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 transition-all"
+                          >
+                            <Pencil size={18} />
+                          </button>
+
+                        )}
+
+                        <button
+                          onClick={() => handleDelete(contact.id)}
+                          className="p-2 rounded-xl bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+
+                      </div>
 
                     </td>
 
@@ -300,23 +432,6 @@ export default function ContactsPage() {
                   className="w-full bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-2xl px-5 py-4 outline-none"
                 />
 
-                <select
-                  value={newContact.status}
-                  onChange={(e) =>
-                    setNewContact({
-                      ...newContact,
-                      status: e.target.value,
-                    })
-                  }
-                  className="w-full bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-2xl px-5 py-4 outline-none"
-                >
-
-                  <option>Active</option>
-                  <option>Lead</option>
-                  <option>Inactive</option>
-
-                </select>
-
               </div>
 
               <div className="flex gap-4 mt-8">
@@ -329,27 +444,7 @@ export default function ContactsPage() {
                 </button>
 
                 <button
-                  onClick={() => {
-
-                    const contactToAdd = {
-                      ...newContact,
-                      initial: newContact.name.charAt(0),
-                    }
-
-                    setContactsData([
-                      ...contactsData,
-                      contactToAdd,
-                    ])
-
-                    setNewContact({
-                      name: "",
-                      email: "",
-                      company: "",
-                      status: "Active",
-                    })
-
-                    setShowModal(false)
-                  }}
+                  onClick={handleAddContact}
                   className="flex-1 bg-black dark:bg-white text-white dark:text-black py-4 rounded-2xl font-semibold"
                 >
                   Save Contact
