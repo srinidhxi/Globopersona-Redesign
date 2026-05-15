@@ -4,164 +4,147 @@ import { useState } from "react"
 
 import {
   Sparkles,
-  Mail,
+  Send,
+  Calendar,
   Users,
-  WandSparkles,
 } from "lucide-react"
 
 import Sidebar from "@/components/ui/layout/sidebar"
 
 export default function CreateCampaignPage() {
-  const [isGenerating, setIsGenerating] = useState(false)
 
-  const [generatedEmail, setGeneratedEmail] = useState("")
-  const [campaignLaunched, setCampaignLaunched] = useState(false)
+  const [campaignName, setCampaignName] = useState("")
+  const [subject, setSubject] = useState("")
+  const [audience, setAudience] = useState("")
+  const [emailContent, setEmailContent] = useState("")
 
-const [draftSaved, setDraftSaved] = useState(false)
+  const generateAIEmail = () => {
+
+    setEmailContent(
+`Hey there 👋
+
+We’re excited to introduce our latest AI-powered platform designed to help businesses automate outreach and improve engagement.
+
+With smarter campaigns and personalized emails, you can save hours while increasing conversions.
+
+Let us know if you'd like a quick demo 🚀`
+    )
+  }
 
   return (
-    <div className="flex">
+
+    <div className="flex bg-zinc-100 dark:bg-zinc-950">
 
       <Sidebar />
 
-      <div className="flex-1 min-h-screen bg-zinc-100 dark:bg-zinc-950 p-8 transition-all duration-300">
+      <div className="flex-1 min-h-screen p-6 lg:p-8">
 
-        <div className="mb-10">
+        {/* HEADER */}
+        <div className="flex flex-col xl:flex-row xl:items-center xl:justify-between gap-6 mb-8">
 
-          <h1 className="text-5xl font-bold text-zinc-900 dark:text-white">
-            Create Campaign
-          </h1>
+          <div>
 
-          <p className="text-zinc-500 dark:text-zinc-400 mt-3 text-lg">
-            Build AI-powered personalized email campaigns
-          </p>
+            <h1 className="text-4xl lg:text-5xl font-bold text-zinc-900 dark:text-white">
+              Create Campaign
+            </h1>
+
+            <p className="text-zinc-500 dark:text-zinc-400 mt-2 text-lg">
+              Generate and schedule AI email campaigns
+            </p>
+
+          </div>
+
+          <button
+            onClick={generateAIEmail}
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-4 rounded-2xl shadow-lg font-medium hover:scale-105 transition-all duration-300 flex items-center gap-2 w-fit"
+          >
+
+            <Sparkles size={20} />
+
+            Generate AI Email
+
+          </button>
 
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
+        {/* FORM */}
+        <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
 
-          <div className="xl:col-span-2 space-y-8">
+          {/* LEFT */}
+          <div className="xl:col-span-2 bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-8 shadow-sm">
 
-            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm transition-all duration-300">
+            <div className="space-y-6">
 
-              <div className="flex items-center gap-3 mb-6">
+              {/* CAMPAIGN NAME */}
+              <div>
 
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white">
+                <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-3 block">
+                  Campaign Name
+                </label>
 
-                  <Mail size={24} />
-
-                </div>
-
-                <div>
-
-                  <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
-                    Campaign Details
-                  </h2>
-
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    Configure your outreach campaign
-                  </p>
-
-                </div>
+                <input
+                  value={campaignName}
+                  onChange={(e) =>
+                    setCampaignName(e.target.value)
+                  }
+                  placeholder="Enter campaign name..."
+                  className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl px-5 py-4 outline-none text-zinc-900 dark:text-white"
+                />
 
               </div>
 
-              <div className="space-y-6">
+              {/* SUBJECT */}
+              <div>
 
-                <div>
+                <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-3 block">
+                  Email Subject
+                </label>
 
-                  <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Campaign Name
-                  </label>
-
-                  <input
-                    placeholder="AI Outreach Campaign"
-                    className="w-full mt-2 bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-2xl px-5 py-4 outline-none border border-transparent focus:border-blue-500 transition-all"
-                  />
-
-                </div>
-
-                <div>
-
-                  <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Target Audience
-                  </label>
-
-                  <input
-                    placeholder="Startup founders, SaaS companies..."
-                    className="w-full mt-2 bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-2xl px-5 py-4 outline-none border border-transparent focus:border-blue-500 transition-all"
-                  />
-
-                </div>
-
-                <div>
-
-                  <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    AI Instructions
-                  </label>
-
-                  <textarea
-                    placeholder="Generate personalized cold outreach emails..."
-                    className="w-full mt-2 bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-2xl px-5 py-4 outline-none border border-transparent focus:border-blue-500 transition-all h-40 resize-none"
-                  />
-
-                </div>
+                <input
+                  value={subject}
+                  onChange={(e) =>
+                    setSubject(e.target.value)
+                  }
+                  placeholder="Enter email subject..."
+                  className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl px-5 py-4 outline-none text-zinc-900 dark:text-white"
+                />
 
               </div>
 
-            </div>
+              {/* AUDIENCE */}
+              <div>
 
-            <div className="bg-white dark:bg-zinc-900 rounded-3xl p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm transition-all duration-300">
+                <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-3 block">
+                  Target Audience
+                </label>
 
-              <div className="flex items-center gap-3 mb-6">
-
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white">
-
-                  <Users size={24} />
-
-                </div>
-
-                <div>
-
-                  <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
-                    Audience Settings
-                  </h2>
-
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    Define lead segmentation
-                  </p>
-
-                </div>
+                <input
+                  value={audience}
+                  onChange={(e) =>
+                    setAudience(e.target.value)
+                  }
+                  placeholder="Startup founders, marketers..."
+                  className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl px-5 py-4 outline-none text-zinc-900 dark:text-white"
+                />
 
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* EMAIL CONTENT */}
+              <div>
 
-                <div>
+                <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-3 block">
+                  Email Content
+                </label>
 
-                  <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Industry
-                  </label>
-
-                  <input
-                    placeholder="Technology"
-                    className="w-full mt-2 bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-2xl px-5 py-4 outline-none"
-                  />
-
-                </div>
-
-                <div>
-
-                  <label className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Company Size
-                  </label>
-
-                  <input
-                    placeholder="10-50 employees"
-                    className="w-full mt-2 bg-zinc-100 dark:bg-zinc-950 text-zinc-900 dark:text-white rounded-2xl px-5 py-4 outline-none"
-                  />
-
-                </div>
+                <textarea
+                  value={emailContent}
+                  onChange={(e) =>
+                    setEmailContent(e.target.value)
+                  }
+                  placeholder="Write your AI email..."
+                  rows={12}
+                  className="w-full bg-zinc-100 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 rounded-2xl px-5 py-4 outline-none resize-none text-zinc-900 dark:text-white"
+                />
 
               </div>
 
@@ -169,170 +152,84 @@ const [draftSaved, setDraftSaved] = useState(false)
 
           </div>
 
-          <div>
+          {/* RIGHT SIDEBAR */}
+          <div className="space-y-6">
 
-            <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-3xl p-8 text-white shadow-xl sticky top-8">
+            {/* CAMPAIGN STATS */}
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm">
 
-              <div className="flex items-center gap-3 mb-6">
-
-                <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
-
-                  <Sparkles size={24} />
-
-                </div>
-
-                <div>
-
-                  <h2 className="text-2xl font-bold">
-                    AI Assistant
-                  </h2>
-
-                  <p className="text-blue-100">
-                    Smart personalization engine
-                  </p>
-
-                </div>
-
-              </div>
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white mb-6">
+                Campaign Info
+              </h2>
 
               <div className="space-y-5">
 
-                <div className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                <div className="flex items-center justify-between">
 
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-3 text-zinc-500">
 
-                    <WandSparkles size={18} />
+                    <Users size={18} />
 
-                    <span className="font-semibold">
-                      AI Suggestions
-                    </span>
+                    Audience
 
                   </div>
 
-                  <p className="text-sm text-blue-100 leading-relaxed">
-                    Use concise subject lines and personalize openings with company-specific pain points.
-                  </p>
+                  <span className="font-semibold text-zinc-900 dark:text-white">
+                    12.8K
+                  </span>
 
                 </div>
 
-                <div className="bg-white/10 rounded-2xl p-5 backdrop-blur-sm">
+                <div className="flex items-center justify-between">
 
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-3 text-zinc-500">
 
-                    <Sparkles size={18} />
+                    <Calendar size={18} />
 
-                    <span className="font-semibold">
-                      Optimization Score
-                    </span>
+                    Schedule
 
                   </div>
 
-                  <h3 className="text-5xl font-bold mt-4">
-                    92%
-                  </h3>
+                  <span className="font-semibold text-zinc-900 dark:text-white">
+                    Tomorrow
+                  </span>
+
+                </div>
+
+                <div className="flex items-center justify-between">
+
+                  <div className="flex items-center gap-3 text-zinc-500">
+
+                    <Send size={18} />
+
+                    Status
+
+                  </div>
+
+                  <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                    Draft
+                  </span>
 
                 </div>
 
               </div>
 
-              <button
-                onClick={() => {
+            </div>
 
-                  setIsGenerating(true)
+            {/* ACTION BUTTONS */}
+            <div className="bg-white dark:bg-zinc-900 rounded-3xl border border-zinc-200 dark:border-zinc-800 p-6 shadow-sm space-y-4">
 
-                  setTimeout(() => {
+              <button className="w-full bg-black dark:bg-white text-white dark:text-black py-4 rounded-2xl font-semibold hover:scale-[1.02] transition-all duration-300">
 
-                    setGeneratedEmail(
-`Hey Sarah,
-
-I noticed your company is scaling rapidly in the SaaS space. Many growing startups struggle with converting outbound leads consistently.
-
-Globopersona helps automate personalized AI-powered outreach campaigns that improve engagement and response rates significantly.
-
-Would you be open to a quick 15-minute conversation next week?
-
-Best,
-W`
-                    )
-
-                    setIsGenerating(false)
-
-                  }, 2000)
-
-                }}
-                className="w-full mt-8 bg-white text-zinc-900 py-4 rounded-2xl font-semibold hover:bg-zinc-100 transition-all"
-              >
-
-                {isGenerating
-                  ? "Generating..."
-                  : "Generate AI Emails"}
+                Save Campaign
 
               </button>
 
-              {generatedEmail && (
+              <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-4 rounded-2xl font-semibold hover:scale-[1.02] transition-all duration-300">
 
-                <div className="mt-6 bg-white/10 border border-white/20 rounded-2xl p-5">
+                Send Test Email
 
-                  <h3 className="font-semibold mb-3">
-                    Generated Email
-                  </h3>
-
-                  <p className="text-sm leading-relaxed whitespace-pre-line text-blue-100">
-                    {generatedEmail}
-                  </p>
-
-                </div>
-
-              )}
-              <div className="mt-6 flex gap-4">
-
-  <button
-    onClick={() => {
-      setDraftSaved(true)
-
-      setTimeout(() => {
-        setDraftSaved(false)
-      }, 2500)
-    }}
-    className="flex-1 bg-white/10 border border-white/20 text-white py-4 rounded-2xl font-semibold hover:bg-white/20 transition-all"
-  >
-    Save Draft
-  </button>
-
-  <button
-    onClick={() => {
-      setCampaignLaunched(true)
-
-      setTimeout(() => {
-        setCampaignLaunched(false)
-      }, 3000)
-    }}
-    className="flex-1 bg-white text-zinc-900 py-4 rounded-2xl font-semibold hover:bg-zinc-100 transition-all"
-  >
-    Launch Campaign
-  </button>
-
-</div>
-
-{draftSaved && (
-
-  <div className="mt-4 bg-blue-500/20 border border-blue-400/30 rounded-2xl p-4 text-white">
-
-    ✅ Draft saved successfully
-
-  </div>
-
-)}
-
-{campaignLaunched && (
-
-  <div className="mt-4 bg-green-500/20 border border-green-400/30 rounded-2xl p-4 text-white">
-
-    🚀 Campaign launched successfully
-
-  </div>
-
-)}
+              </button>
 
             </div>
 
@@ -343,5 +240,7 @@ W`
       </div>
 
     </div>
+
   )
+
 }
