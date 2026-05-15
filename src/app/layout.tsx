@@ -1,16 +1,11 @@
-import { ThemeProvider } from "../components/ui/theme-provider"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-
 import "./globals.css"
 
-const inter = Inter({
-  subsets: ["latin"],
-})
+import { ThemeProvider } from "@/components/ui/theme-provider"
 
 export const metadata: Metadata = {
   title: "Globopersona",
-  description: "AI Email SaaS Platform",
+  description: "AI Email Platform",
 }
 
 export default function RootLayout({
@@ -19,16 +14,18 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-     <body className={inter.className}>
+    <html lang="en" suppressHydrationWarning>
 
-  <ThemeProvider>
+      <body>
 
-    {children}
+        <ThemeProvider>
 
-  </ThemeProvider>
+          {children}
 
-</body>
+        </ThemeProvider>
+
+      </body>
+
     </html>
   )
 }

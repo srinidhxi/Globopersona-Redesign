@@ -46,6 +46,7 @@ const menuItems = [
 export default function Sidebar() {
 
   const pathname = usePathname()
+  const { theme, setTheme } = useTheme()
   const [isOpen, setIsOpen] = useState(false)
 
 const { theme, setTheme } = useTheme()
@@ -146,16 +147,24 @@ className={`fixed lg:static top-0 left-0 min-h-screen w-64 bg-zinc-950 text-whit
   onClick={() =>
     setTheme(theme === "dark" ? "light" : "dark")
   }
-className="w-full mt-10 mb-6 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-2xl px-4 py-3 flex items-center justify-between transition-all"
+  className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl px-4 py-4 flex items-center justify-between shadow-sm hover:shadow-md transition-all"
 >
 
-  <span className="text-sm font-medium">
+  <span className="font-medium text-zinc-900 dark:text-white">
     Theme
   </span>
 
-  {theme === "dark"
-    ? <Sun size={18} />
-    : <Moon size={18} />}
+  {theme === "dark" ? (
+    <Sun
+      size={18}
+      className="text-yellow-500"
+    />
+  ) : (
+    <Moon
+      size={18}
+      className="text-blue-500"
+    />
+  )}
 
 </button>
         <div className="mt-auto pt-6">
