@@ -167,29 +167,8 @@ className={`fixed lg:static top-0 left-0 min-h-screen w-64 bg-zinc-950 text-whit
   )}
 
 </button>
-<div className="space-y-3 mt-10">
 
-  <Link href="/login">
 
-    <button className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white py-3 rounded-2xl font-medium hover:scale-[1.02] transition-all">
-
-      Login
-
-    </button>
-
-  </Link>
-
-  <Link href="/signup">
-
-    <button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-2xl font-medium hover:scale-[1.02] transition-all">
-
-      Sign Up
-
-    </button>
-
-  </Link>
-
-</div>
         <div className="mt-auto pt-6">
 
           <div className="bg-zinc-900/60 rounded-2xl p-3 border border-zinc-800">
