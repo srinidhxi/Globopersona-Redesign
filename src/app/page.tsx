@@ -53,10 +53,13 @@ const campaigns = [
 ]
 
 export default function Home() {
+
   const [showNotifications, setShowNotifications] = useState(false)
+
   const [showProfileMenu, setShowProfileMenu] = useState(false)
 
   return (
+
     <div className="flex bg-zinc-100 dark:bg-zinc-950">
 
       <Sidebar />
@@ -99,9 +102,10 @@ export default function Home() {
             <div className="relative">
 
               <button
-                onClick={() =>
+                onClick={() => {
                   setShowNotifications(!showNotifications)
-                }
+                  setShowProfileMenu(false)
+                }}
                 className="w-12 h-12 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 text-zinc-900 dark:text-white"
               >
 
@@ -178,11 +182,11 @@ export default function Home() {
 
               {showProfileMenu && (
 
-                <div className="absolute right-0 mt-3 w-64 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-2xl p-3 z-50">
+                <div className="absolute right-0 mt-3 w-72 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-3xl shadow-2xl p-3 z-50">
 
                   <div className="p-4 border-b border-zinc-200 dark:border-zinc-800">
 
-                    <h3 className="font-bold text-zinc-900 dark:text-white">
+                    <h3 className="font-bold text-xl text-zinc-900 dark:text-white">
                       Sri Nidhi
                     </h3>
 
@@ -192,21 +196,44 @@ export default function Home() {
 
                   </div>
 
-                  <div className="mt-2 space-y-1">
+                  <div className="mt-3 space-y-1">
 
-                    <button className="w-full text-left px-4 py-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all text-zinc-700 dark:text-zinc-300">
+                    <button
+                      onClick={() => {
+                        setShowProfileMenu(false)
+                        window.location.href = "/settings"
+                      }}
+                      className="w-full text-left px-4 py-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all text-zinc-700 dark:text-zinc-300"
+                    >
                       My Profile
                     </button>
 
-                    <button className="w-full text-left px-4 py-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all text-zinc-700 dark:text-zinc-300">
+                    <button
+                      onClick={() => {
+                        setShowProfileMenu(false)
+                        window.location.href = "/settings"
+                      }}
+                      className="w-full text-left px-4 py-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all text-zinc-700 dark:text-zinc-300"
+                    >
                       Settings
                     </button>
 
-                    <button className="w-full text-left px-4 py-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all text-zinc-700 dark:text-zinc-300">
+                    <button
+                      onClick={() =>
+                        alert("Billing page coming soon 🚀")
+                      }
+                      className="w-full text-left px-4 py-3 rounded-2xl hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all text-zinc-700 dark:text-zinc-300"
+                    >
                       Billing
                     </button>
 
-                    <button className="w-full text-left px-4 py-3 rounded-2xl hover:bg-red-100 dark:hover:bg-red-900/30 transition-all text-red-600">
+                    <button
+                      onClick={() => {
+                        setShowProfileMenu(false)
+                        window.location.href = "/login"
+                      }}
+                      className="w-full text-left px-4 py-3 rounded-2xl hover:bg-red-100 dark:hover:bg-red-900/30 transition-all text-red-600"
+                    >
                       Logout
                     </button>
 
@@ -222,27 +249,27 @@ export default function Home() {
 
         </div>
 
-        {/* STATS CARDS */}
+        {/* STATS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-6 mb-8">
 
           {/* CARD 1 */}
-          <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-6 rounded-3xl text-white shadow-lg min-w-0">
+          <div className="bg-gradient-to-br from-blue-500 to-indigo-600 p-6 rounded-3xl text-white shadow-lg">
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between">
 
-              <div className="min-w-0">
+              <div>
 
-                <p className="text-sm text-blue-100 whitespace-nowrap">
+                <p className="text-sm text-blue-100">
                   Total Campaigns
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-bold mt-4 truncate">
+                <h2 className="text-4xl font-bold mt-4">
                   48
                 </h2>
 
               </div>
 
-              <div className="bg-white/20 p-4 rounded-2xl shrink-0">
+              <div className="bg-white/20 p-4 rounded-2xl">
                 <Mail size={28} />
               </div>
 
@@ -251,23 +278,23 @@ export default function Home() {
           </div>
 
           {/* CARD 2 */}
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm min-w-0">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between">
 
-              <div className="min-w-0">
+              <div>
 
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm whitespace-nowrap">
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
                   Open Rate
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-bold mt-4 text-zinc-900 dark:text-white truncate">
+                <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white">
                   28.4%
                 </h2>
 
               </div>
 
-              <div className="bg-green-100 p-4 rounded-2xl shrink-0">
+              <div className="bg-green-100 p-4 rounded-2xl">
 
                 <TrendingUp
                   className="text-green-600"
@@ -281,23 +308,23 @@ export default function Home() {
           </div>
 
           {/* CARD 3 */}
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm min-w-0">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between">
 
-              <div className="min-w-0">
+              <div>
 
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm whitespace-nowrap">
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
                   AI Emails Sent
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-bold mt-4 text-zinc-900 dark:text-white truncate">
+                <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white">
                   12.8K
                 </h2>
 
               </div>
 
-              <div className="bg-purple-100 p-4 rounded-2xl shrink-0">
+              <div className="bg-purple-100 p-4 rounded-2xl">
 
                 <Sparkles
                   className="text-purple-600"
@@ -311,23 +338,23 @@ export default function Home() {
           </div>
 
           {/* CARD 4 */}
-          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm min-w-0 overflow-hidden">
+          <div className="bg-white dark:bg-zinc-900 p-6 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-sm">
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between">
 
-              <div className="min-w-0 flex-1">
+              <div>
 
-                <p className="text-zinc-500 dark:text-zinc-400 text-sm whitespace-nowrap">
+                <p className="text-zinc-500 dark:text-zinc-400 text-sm">
                   Revenue Generated
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-bold mt-4 text-zinc-900 dark:text-white truncate">
+                <h2 className="text-4xl font-bold mt-4 text-zinc-900 dark:text-white">
                   $24,847
                 </h2>
 
               </div>
 
-              <div className="bg-yellow-100 p-4 rounded-2xl shrink-0 flex items-center justify-center">
+              <div className="bg-yellow-100 p-4 rounded-2xl">
 
                 <DollarSign
                   className="text-yellow-600"
@@ -342,7 +369,7 @@ export default function Home() {
 
         </div>
 
-        {/* MAIN SECTION */}
+        {/* CONTENT */}
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
 
           {/* CHART */}
@@ -409,113 +436,51 @@ export default function Home() {
             <div className="space-y-4">
 
               <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800">
+
                 <p className="font-semibold text-zinc-900 dark:text-white">
                   Emma opened campaign
                 </p>
+
                 <span className="text-sm text-zinc-500">
                   2 minutes ago
                 </span>
+
               </div>
 
               <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800">
+
                 <p className="font-semibold text-zinc-900 dark:text-white">
                   New lead added
                 </p>
+
                 <span className="text-sm text-zinc-500">
                   15 minutes ago
                 </span>
+
               </div>
 
               <div className="p-4 rounded-2xl bg-zinc-100 dark:bg-zinc-800">
+
                 <p className="font-semibold text-zinc-900 dark:text-white">
                   Campaign completed
                 </p>
+
                 <span className="text-sm text-zinc-500">
                   1 hour ago
                 </span>
+
               </div>
 
             </div>
 
           </div>
-
-        </div>
-
-        {/* RECENT CAMPAIGNS */}
-        <div className="bg-white dark:bg-zinc-900 rounded-3xl p-6 border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-x-auto">
-
-          <div className="flex items-center justify-between mb-6">
-
-            <div>
-
-              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
-                Recent Campaigns
-              </h2>
-
-              <p className="text-zinc-500 dark:text-zinc-400 mt-1">
-                Latest AI email campaign performance
-              </p>
-
-            </div>
-
-          </div>
-
-          <table className="w-full min-w-[600px]">
-
-            <thead>
-
-              <tr className="border-b border-zinc-200 dark:border-zinc-800 text-left text-zinc-500 text-sm">
-
-                <th className="pb-4">Campaign</th>
-                <th className="pb-4">Status</th>
-                <th className="pb-4">Open Rate</th>
-                <th className="pb-4">Emails Sent</th>
-
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              {campaigns.map((campaign, index) => (
-
-                <tr
-                  key={index}
-                  className="border-b border-zinc-100 dark:border-zinc-800"
-                >
-
-                  <td className="py-5 font-semibold text-zinc-900 dark:text-white">
-                    {campaign.name}
-                  </td>
-
-                  <td className="py-5">
-
-                    <span className="px-3 py-1 rounded-full text-xs bg-zinc-100 dark:bg-zinc-800">
-                      {campaign.status}
-                    </span>
-
-                  </td>
-
-                  <td className="py-5 text-zinc-700 dark:text-zinc-300">
-                    {campaign.openRate}
-                  </td>
-
-                  <td className="py-5 text-zinc-700 dark:text-zinc-300">
-                    {campaign.sent}
-                  </td>
-
-                </tr>
-
-              ))}
-
-            </tbody>
-
-          </table>
 
         </div>
 
       </div>
 
     </div>
+
   )
+
 }
