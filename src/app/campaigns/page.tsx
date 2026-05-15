@@ -53,9 +53,16 @@ export default function CampaignsPage() {
 
           </div>
 
-          <button className="bg-black dark:bg-white text-white dark:text-black px-6 py-4 rounded-2xl shadow-lg font-medium hover:scale-105 transition-all duration-300 w-fit">
-            Create Campaign
-          </button>
+          <button
+  onClick={() =>
+    window.location.href = "/create-campaign"
+  }
+  className="bg-black dark:bg-white text-white dark:text-black px-6 py-4 rounded-2xl shadow-lg font-medium hover:scale-105 transition-all duration-300"
+>
+
+  Create Campaign
+
+</button>
 
         </div>
 
