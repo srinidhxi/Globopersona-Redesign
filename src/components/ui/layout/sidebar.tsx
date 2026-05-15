@@ -46,7 +46,7 @@ const menuItems = [
 export default function Sidebar() {
 
   const pathname = usePathname()
-  const { theme, setTheme } = useTheme()
+
   const [isOpen, setIsOpen] = useState(false)
 
 const { theme, setTheme } = useTheme()
